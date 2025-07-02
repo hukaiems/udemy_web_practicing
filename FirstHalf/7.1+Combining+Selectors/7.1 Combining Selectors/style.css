@@ -1,0 +1,23 @@
+/* Write your code here: */
+
+/* Group rule */
+h1, h2{
+    color: blueviolet;
+}
+
+/* Child selector */
+.box > p{
+    color: firebrick;
+}
+
+.box .list{
+    color: blue;
+}
+
+li.done{
+    color: seagreen;
+}
+
+ul p.done{
+    font-size: 0.5rem;
+}

@@ -1,0 +1,88 @@
+<!-- 
+  TODO: Create a motivational post website.
+Style it how ever you like. 
+Look at the goal image for inspiration.
+But it must have the following features:
+1. The main h1 text should be using the Regular Libre Baskerville Font from Google Fonts:
+  https://fonts.google.com/specimen/Libre+Baskerville
+2. The text should be white and background black.
+3. Add your own image into the images folder inside assets. It should have a 5px white border.
+4. The text should be center aligned.
+5. Create a div to contain the h1, p and img elements. Adjust the margins so that the image and text are centered on the page. 
+  Hint: You horizontally center a div by giving it a width of 50% and a margin-left of 25%.
+  Hint: Set the image to have a width of 100% so it fills the div. 
+6. Read about the text-transform property on MDN docs to make the h1 uppercase with CSS.
+  https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Si Si</title>
+  <style>
+    .sigmar-regular {
+      font-family: "Sigmar", serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    body{
+      background-color: black;
+      color: white;
+      text-align: center;
+    }
+
+    img{
+      border: 5px solid white;
+      margin-top: 10%;
+    }
+
+    h1{
+      text-transform: uppercase;
+    }
+
+    .second{
+      width: 50%;
+      margin-left: 25%;
+      margin-top: 300px;
+    }
+
+    .other-img{
+      width: 50%;
+    }
+
+    h2{
+      margin-top: 200px;
+    }
+
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Sigmar&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="poster">
+    <img class="other-img" src="./assets/images/image.png"/>
+    <h1 class="sigmar-regular">That special moment</h1>
+    <p> When I finally found you Si Si. Moaaaaa˚ʚ♡ɞ˚Now please scroll down Si Si.</p>
+
+    <p class="second">Okay now is the main part. I know that this is a little rough time for us. Thank you for letting me know
+      your feelings, I really appreciate when you talk to me about your feelings even though it is tough to confess all the thoughts like that. I love it when you trust me and want to share many things
+      with me. I had done many things that cut you deeply and hurt your feelings, bae. I'm really really sorry.
+      Despite all of that you still love me and care for me. I will try to be more caring and put myself more in your point of view in the things
+      I do. If you find something I do hard to accept, just tell me okay? I believe with communication, our
+      relationship can last long and go through all the hard times. I will try to be with you, walk with you in this 
+      life, and always be there for you. I love you bae and thank you for being in my life. Moaa.
+
+    <h2> This is some moments i really love of us.</h2>
+
+    <img class="other-img" src="./assets/images/holdhand.JPG" />
+    <img class="other-img" src="./assets/images/kara.JPG" />
+    <img class="other-img" src="./assets/images/Sipose.JPG"/>
+    <img class="other-img" src="./assets/images/Si_with_mask.jpg"/>
+  </div>
+  
+</body>
+</html>
