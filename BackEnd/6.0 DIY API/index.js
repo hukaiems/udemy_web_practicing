@@ -8,19 +8,24 @@ const masterKey = "4VGP2DN-6EWM4SJ-N6FGRHV-Z3PR3TT";
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //1. GET a random joke
-app.get('/random', (req, res)=> {
+app.get("/random", (req, res) => {
   const randomJoke = Math.floor(Math.random() * jokes.length);
   const joke = jokes[randomJoke];
   // not res.send(joke); but it should be
-  res.json(joke); aaa
+  res.json(joke);
 });
 
 //2. GET a specific joke
 
-app.get('/jokes/:id', (req, res) => {
+app.get("/jokes/:id", (req, res) => {
   // so get doesn't have body so id is put in url get it through param
   const id = parseInt(req.params.id);
-  res.json(jokes[id + 1]);
+  const foundedJoke = jokes.find((joke) => joke.id === id);
+  if (!foundedJoke) {
+    res.json("Unexisted id");
+  } else {
+    res.json(foundedJoke);
+  }
 });
 
 //3. GET a jokes by filtering on the joke type
