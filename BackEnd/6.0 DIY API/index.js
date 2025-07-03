@@ -29,8 +29,38 @@ app.get("/jokes/:id", (req, res) => {
 });
 
 //3. GET a jokes by filtering on the joke type
+app.get("/filter", (req, res) => {
+  const currentType = req.query.type;
+
+  const matchedJokes = jokes.filter((joke) => joke.jokeType === currentType);
+
+  if (matchedJokes.length === 0) {
+    return res.status(404).json({
+      success: false,
+      message: `No jokes found for type: ${currentType}`,
+    });
+  }
+
+  res.status(200).json({
+    success: true,
+    count: matchedJokes.length,
+    data: matchedJokes,
+  });
+});
 
 //4. POST a new joke
+app.post('/jokes', (req, res) => {
+  const text = req.body.text;
+  const type = req.body.type;
+  const id = jokes.length + 1;
+
+  jokes.push({jokeText: text, jokeType: type, id});
+
+  res.status(200).json({
+    success: true,
+    message: "a",
+  });
+});
 
 //5. PUT a joke
 
