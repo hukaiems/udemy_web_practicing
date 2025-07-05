@@ -50,25 +50,84 @@ app.get("/filter", (req, res) => {
 
 //4. POST a new joke
 app.post('/jokes', (req, res) => {
-  const text = req.body.text;
-  const type = req.body.type;
+  const text = req.body.jokeText;
+  const type = req.body.jokeType;
   const id = jokes.length + 1;
+  const joke = {
+    "id": id,
+    "jokeText": text,
+    "jokeType": type,
+  }
 
-  jokes.push({jokeText: text, jokeType: type, id});
-
-  res.status(200).json({
-    success: true,
-    message: "a",
-  });
+  jokes.push(joke);
+  res.status(200).json(joke);
 });
 
 //5. PUT a joke
+app.put('/jokes/:id',(req, res) => {
+  // take id from param will be a string, parseInt it
+  const jokeId = parseInt(req.params.id);
+  const text = req.body.jokeText;
+  const type = req.body.jokeType;
+
+  // find in JS help me to make a reference to that object, naice thing brah
+  const foundedJoke = jokes.find((joke) => joke.id === jokeId);
+
+  if (!foundedJoke) {
+    res.status(404).json({message: "Joke not found"}); //inside .json() must put in {} if it isn't a var.
+  }
+
+  foundedJoke.jokeText = text;
+  foundedJoke.jokeType = type;
+
+  res.status(200).json(foundedJoke);
+});
 
 //6. PATCH a joke
+app.patch('/jokes/:id', (req, res) => {
+  const jokeId = parseInt(req.params.id);
+  const text = req.body.jokeText;
+  const type = req.body.jokeType;
+  const foundedJoke = jokes.find((joke) => joke.id === jokeId);
+
+  if(!foundedJoke){
+    res.status(404).json({message: "Joke not found"});
+  }
+
+  if(text){
+    foundedJoke.jokeText = text;
+  }
+  if(type){
+    foundedJoke.jokeType = type;
+  }
+  res.status(200).json(foundedJoke);
+});
 
 //7. DELETE Specific joke
+app.delete('/jokes/:id', (req, res) => {
+  const jokeId = parseInt(req.params.id);
+  const jokeIndex = jokes.findIndex((joke)=> joke.id === jokeId); // jokeIndex returns -1 if element isn't exist.
+
+  if(jokeIndex === -1){
+    res.status(404).json({message: "Joke not found"});
+  }
+
+  jokes.splice(jokeIndex, 1);;
+
+  res.status(200).json({message: `Joke with id ${jokeId} has been deleted.`});
+});
 
 //8. DELETE All jokes
+app.delete('/all', (req, res) => { // jokes/all make it mistake the previous jokes/:id
+  const requestKey = req.query.masterKey;
+
+  if( requestKey === masterKey){
+    jokes = [];
+    return res.status(200).json({message: "Database wipe out successfully"});
+  }
+
+  return res.status(401).json({message:"Wrong credentials"});
+});
 
 app.listen(port, () => {
   console.log(`Successfully started server on port ${port}.`);
